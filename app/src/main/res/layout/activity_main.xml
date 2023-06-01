@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Notification Dialog-->
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        tools:context=".MainActivity"
+        tools:deviceIds="wear">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--ToolBar-->
+            <RelativeLayout
+                android:id="@+id/toolbar_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/icon_location"
+                    android:layout_width="14dp"
+                    android:layout_height="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_location_off"
+                    android:tint="@color/white"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/icon_wifi"
+                    android:layout_width="24dp"
+                    android:layout_height="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+
+                    android:layout_toEndOf="@id/icon_location"
+                    android:src="@drawable/ic_wifi_off"
+                    android:tint="@color/white"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/icon_bluetooth"
+                    android:layout_width="14dp"
+                    android:layout_height="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_toEndOf="@id/icon_wifi"
+                    android:src="@drawable/ic_bluetooth_off"
+                    android:tint="@color/white"
+                    tools:ignore="ContentDescription,UseAppTint" />
+            </RelativeLayout>
+            <!--Location Dialog-->
+            <RelativeLayout
+                android:id="@+id/confirm_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_section"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/confirm_text_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/confirm_dialog_cancel"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/confirm_text_dialog"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_cancel_filled"
+                    android:tint="@color/red"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/confirm_dialog_yes"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/confirm_text_dialog"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_check_filled"
+                    android:tint="@color/blue"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+            </RelativeLayout>
+            <!--Bluetooth Dialog-->
+            <RelativeLayout
+                android:id="@+id/bluetooth_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_section"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/bluetooth_text_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/enable_bluetooth_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/bluetooth_dialog_cancel"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/bluetooth_text_dialog"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_cancel_filled"
+                    android:tint="@color/red"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/bluetooth_dialog_yes"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/bluetooth_text_dialog"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_check_filled"
+                    android:tint="@color/blue"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+            </RelativeLayout>
+            <!--Location Dialog-->
+            <RelativeLayout
+                android:id="@+id/location_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_section"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/location_text_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/enable_location_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/location_dialog_cancel"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/location_text_dialog"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_cancel_filled"
+                    android:tint="@color/red"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/location_dialog_yes"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/location_text_dialog"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_check_filled"
+                    android:tint="@color/blue"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+            </RelativeLayout>
+
+            <!--Login Layout-->
+            <RelativeLayout
+                android:id="@+id/login_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar_section">
+
+                <TextView
+                    android:id="@+id/welcome_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/welcome"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/icon_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_below="@id/welcome_login"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/smartsonialogo_original"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+                <TextView
+                    android:id="@+id/login_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/icon_login"
+                    android:layout_marginTop="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/login_message"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/username_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/login_message"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/blue_dark_section"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon_username"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_username_filled"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription,UseAppTint" />
+
+                    <EditText
+                        android:id="@+id/username_input"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/icon_username"
+                        android:background="#00000000"
+                        android:hint="@string/username"
+                        android:inputType="text"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/password_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/username_section"
+                    android:background="@drawable/blue_dark_section"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon_password"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_password_filled"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription,UseAppTint" />
+
+                    <EditText
+                        android:id="@+id/password_input"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/icon_password"
+                        android:background="#00000000"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/error_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/password_section"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/empty_field_password"
+                    android:textAlignment="center"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/login_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/error_message"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/blue_button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/login"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/icon_funds"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/login_button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/funds_background"
+                    tools:ignore="ContentDescription,UseAppTint" />
+
+            </RelativeLayout>
+            <!--Measure Layout-->
+            <RelativeLayout
+                android:id="@+id/measure_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar_section"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/welcome_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/main_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/welcome_text"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/sensors_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/heart_rate_section"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/icon_HEART_RATE"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/ic_heart_filled"
+                                android:tint="@color/blue"
+                                tools:ignore="ContentDescription,UseAppTint" />
+
+                            <TextView
+                                android:id="@+id/value_HEART_RATE"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@id/icon_HEART_RATE"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="@string/not_available"
+                                android:textColor="@color/blue"
+                                android:textSize="20sp" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linear_environment_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="4dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="4dp"
+                            android:paddingBottom="0dp"
+                            tools:ignore="DisableBaselineAlignment">
+
+                            <RelativeLayout
+                                android:id="@+id/height_title_section"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1.5">
+
+                                <TextView
+                                    android:id="@+id/text_title_PRESSURE"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/pressure_title"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/floor_title_section"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/text_title_BATTERY"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/battery_title"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linear_environment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/blue_dark_outline_section"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal"
+                            android:paddingStart="4dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="4dp"
+                            android:paddingBottom="6dp">
+
+                            <RelativeLayout
+                                android:id="@+id/height_section"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1.5">
+
+                                <ImageView
+                                    android:id="@+id/icon_PRESSURE"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="4dp"
+                                    android:src="@drawable/ic_pressure_filled"
+                                    android:tint="@color/blue"
+                                    tools:ignore="ContentDescription,UseAppTint" />
+
+                                <TextView
+                                    android:id="@+id/value_PRESSURE"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toEndOf="@id/icon_PRESSURE"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/not_available"
+                                    android:textColor="@color/blue"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/floor_section"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/icon_BATTERY"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="4dp"
+                                    android:src="@drawable/ic_battery_filled"
+                                    android:tint="@color/blue"
+                                    tools:ignore="ContentDescription,UseAppTint" />
+
+                                <TextView
+                                    android:id="@+id/value_BATTERY"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toEndOf="@id/icon_BATTERY"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/not_available"
+                                    android:textColor="@color/blue"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/permission_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/no_permission"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/notification_bubble"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/main_section"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/red_section"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/action_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/notification_bubble"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/blue_button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/start"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/logout_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/action_button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/blue_dark_button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/logout"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <!--Notification Dialog-->
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/notification_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_section">
+
+                <TextView
+                    android:id="@+id/notification_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/notification_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/notification_title"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_below="@id/notification_text">
+
+                    <TextView
+                        android:id="@+id/notification_dismiss_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/notification_dismiss_icon"
+                        android:text="@string/notif_dismiss"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:id="@+id/notification_dismiss_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_dismiss_button"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription,UseAppTint" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <!--SOS section-->
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/sos_section"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/sos_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/cancel_button"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/sending_an_sos_in"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/counter"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textStyle="bold"
+            android:text="5"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="64sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/cancel_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/red_button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:textStyle="bold"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_sos"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circle_shape"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/circular_progress_bar" />
+    </RelativeLayout>
+    <!--Loading layout-->
+    <RelativeLayout
+        android:focusable="true"
+        android:clickable="true"
+        android:background="@color/black"
+        android:visibility="gone"
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="24dp"
+            android:indeterminateTint="@color/white"
+            android:layout_marginBottom="4dp"/>
+
+    </RelativeLayout>
+    <!--Loading layout-->
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/error_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:gravity="center"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/error_text_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/error_dialog_cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_below="@id/error_text_dialog"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_cancel_filled"
+            android:tint="@color/red"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

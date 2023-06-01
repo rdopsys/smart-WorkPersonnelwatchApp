@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Smart Sonia</string>
+    <string name="welcome">Welcome to \n<b>Smart Sonia</b></string>
+    <string name="login_message">Please login to continue.</string>
+    <string name="loading_message">Please wait…</string>
+    <string name="hello">Hello</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="not_available">N/A</string>
+    <string name="no_permission">The app does not have the necessary permissions to continue.</string>
+    <string name="empty_field_username">Username cannot be empty.</string>
+    <string name="empty_field_password">Password cannot be empty.</string>
+    <string name="no_network">Internet connection required.</string>
+    <string name="error">Something went wrong. Try again.</string>
+    <string name="invalid_user">Invalid user credentials.</string>
+    <string name="error_dialog_data">Something went wrong.\nThe required data could not be loaded. Please make sure you are connected to the internet.</string>
+    <string name="error_dialog_general">Something went wrong.\nPlease make sure you are connected to the internet.</string>
+
+    <string name="enable_location_text">You need to enable your location in order to start collecting your location\'s data.</string>
+    <string name="enable_bluetooth_text">You need to enable your bluetooth sensor in order to start searching for beacons.</string>
+
+    <string name="confirm_logout">Are you sure you want to logout? Data collection will stop.</string>
+    <string name="confirm_stop">Are you sure you want to stop data collection?</string>
+    <string name="sending_an_sos_in">Sending an SOS in</string>
+    <string name="pressure_title">Env. Pressure</string>
+    <string name="battery_title">Battery lev.</string>
+    <string name="cancel">Cancel</string>
+    <string name="notif_dismiss">Bottom button to dismiss</string>
+
+
+</resources>
